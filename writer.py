@@ -1,6 +1,7 @@
 
-#FIle that writes a cosine in a file called data
-
+#Simple test script that simulates the datalogger, it creates a file called data with three columns: 
+# time, cos(x), sin(x), cos(x)+sin(x).
+# To test the plotter. run this script and then run the plotter.
 import numpy as np
 import math
 import time
