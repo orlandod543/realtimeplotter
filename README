@@ -1,0 +1,8 @@
+The real time plotter is a small script that I wrote so I can visualize some data arriving in CSV files. It uses Pandas for data processing and matplotlib 
+
+usage 
+plotter.py input_file 'vars' -options
+
+ - input_file = file to read the data. Must be a CSV file with headers. 
+ - vars = [str] one or more variables to display. The name of the variable must be the same as the name of the column on the CSV file.
+ 
