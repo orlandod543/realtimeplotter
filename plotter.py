@@ -16,8 +16,8 @@ def Argschecker(args):
     try:
         df = pd.read_csv(args.file)
 
-        #Check if the x axis column exist. 
-        if not args.xaxis in df:
+        #If x axis is defined Check if the x axis column exist. 
+        if args.xaxis and (not args.xaxis in df):
             print("Horizontal variable " + args.xaxis + " does not exist")
             sys.exit(0)
 
@@ -54,8 +54,9 @@ def animate(i):
     if(len(df)>args.window):
         df=df.drop(df.index[0:len(df)-args.window])
 
-    #Extract the horizontal axis
-    x = df[args.xaxis]
+    #Extract the horizontal axis if exist
+    if(args.xaxis):
+        x = df[args.xaxis]
     ax1.clear()
     
     #Plot and overlap the variables.
@@ -63,7 +64,11 @@ def animate(i):
         y = df[column]
         if (args.print):
             print(y)
-        ax1.plot(x[len(x)-args.window:len(x)], y[len(y)-args.window:len(y)])
+        #If there is no x defined only plot the y data
+        if(not args.xaxis):
+            ax1.plot(y[len(y)-args.window:len(y)])
+        else:
+            ax1.plot(x[len(x)-args.window:len(x)], y[len(y)-args.window:len(y)])
 
     plt.xlabel(str(args.xaxis))
     plt.ylabel(args.ylabel)
